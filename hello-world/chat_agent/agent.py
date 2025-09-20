@@ -1,19 +1,19 @@
 import base64
 import os
+
+from dotenv import load_dotenv
+from google.adk.agents import LlmAgent
+from google.adk.models.lite_llm import LiteLlm
+from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk import trace as trace_sdk
 from opentelemetry.sdk.trace.export import SimpleSpanProcessor
-from opentelemetry import trace
-
-from google.adk.agents import LlmAgent
-from google.adk.models.lite_llm import LiteLlm
-from dotenv import load_dotenv
 
 load_dotenv()
 
 # Configure Weave endpoint and authentication
 WANDB_BASE_URL = "https://trace.wandb.ai"
-PROJECT_ID = "wandb/hydpy-agent-test"  # e.g., "myteam/myproject"
+PROJECT_ID = "wandb/my-test"  # e.g., "myteam/myproject"
 OTEL_EXPORTER_OTLP_ENDPOINT = f"{WANDB_BASE_URL}/otel/v1/traces"
 
 # Set up authentication
@@ -42,8 +42,6 @@ trace.set_tracer_provider(tracer_provider)
 root_agent = LlmAgent(
     name="chatai_agent",
     model=LiteLlm(model="openai/openai/gpt-oss-20b"),
-    instruction=(
-        "You are a helpful agent who can chat with the user."
-    ),
+    instruction=("You are a helpful agent who can chat with the user."),
     tools=[],
 )
