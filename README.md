@@ -16,7 +16,7 @@ This should get all the required packages set up. Now, let's set the environment
 
 Head to [Google AI Studio](https://aistudio.google.com/apikey) to get a Gemini API Key.
 
-And grab a Weights and Biases key from https://wandb.ai/authorize.
+And grab a Weights and Biases key from [https://wandb.ai/authorize](https://wandb.ai/authorize).
 
 Now, set the following in the `.env` file:
 
